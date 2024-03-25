@@ -59,8 +59,7 @@ const posts = [
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 // Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 const postContainer = document.getElementById("container")
-createPostTemplate(posts[2])
-
+posts.forEach((singlePost) => createPostTemplate(singlePost))
 
 //FUNCTIONS
 //Funzione che prende un oggetto, destruttura le sue chiavi e le usa per compilare un template, il quale poi viene appeso in pagina
