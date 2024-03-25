@@ -64,11 +64,22 @@ posts.forEach((singlePost) => createPostTemplate(singlePost))
 const allLikeButton = document.querySelectorAll(".js-like-button")
 console.log(allLikeButton)
 
+const likedPost = []
+
 allLikeButton.forEach((singleLikeButton) => {
     singleLikeButton.addEventListener("click", function(event){
+        //per evitare che la pagina torni in alto a causa dell'href
         event.preventDefault();
+
+        //aggiunge la classe per il colore al bottone cliccato
         this.classList.add("like-button--liked")
-        let counter = document.querySelector(`#like-counter-${this.dataset.postid}`)
+
+        //identifica l'id del post e lo pusha nell'array
+        const thisId = this.dataset.postid;
+        likedPost.push(thisId);
+
+        //identifica il counter del post e lo aumenta di 1
+        const counter = document.querySelector(`#like-counter-${thisId}`)
         counter.innerHTML = parseInt(counter.innerHTML) + 1;
     })
 })
