@@ -76,15 +76,15 @@ allLikeButton.forEach((singleLikeButton) => {
         event.preventDefault();
 
         //aggiunge la classe per il colore al bottone cliccato
-        this.classList.add("like-button--liked")
+        this.className.includes("like-button--liked") ? this.classList.remove("like-button--liked") : this.classList.add("like-button--liked");
 
         //identifica l'id del post e lo pusha nell'array
         const thisId = this.dataset.postid;
-        likedPost.push(thisId);
+        likedPost.includes(thisId) ? likedPost.pop(thisId) : likedPost.push(thisId);
 
         //identifica il counter del post e lo aumenta di 1
         const counter = document.querySelector(`#like-counter-${thisId}`)
-        counter.innerHTML = parseInt(counter.innerHTML) + 1;
+        counter.innerHTML = likedPost.includes(thisId) ? parseInt(counter.innerHTML) + 1 : parseInt(counter.innerHTML) - 1;
     })
 })
 
