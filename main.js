@@ -61,6 +61,18 @@ const posts = [
 const postContainer = document.getElementById("container")
 posts.forEach((singlePost) => createPostTemplate(singlePost))
 
+const allLikeButton = document.querySelectorAll(".js-like-button")
+console.log(allLikeButton)
+
+allLikeButton.forEach((singleLikeButton) => {
+    singleLikeButton.addEventListener("click", function(event){
+        event.preventDefault();
+        this.classList.add("like-button--liked")
+        let counter = document.querySelector(`#like-counter-${this.dataset.postid}`)
+        counter.innerHTML = parseInt(counter.innerHTML) + 1;
+    })
+})
+
 //FUNCTIONS
 //Funzione che prende un oggetto, destruttura le sue chiavi e le usa per compilare un template, il quale poi viene appeso in pagina
 //postInfo -> Object
@@ -92,7 +104,7 @@ function createPostTemplate(postInfo) {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-${id}" class="js-likes-counter">80</b> persone
+                    Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
                 </div>
             </div> 
         </div>            
