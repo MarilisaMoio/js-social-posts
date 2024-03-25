@@ -97,11 +97,14 @@ function createPostTemplate(postInfo) {
     //converto il formato della data
     const reversedDate = created.split("-").reverse().join("/");
 
+    //verifico la presenza dell'immagine
+    const profilePic = hasImageOrNot(image, name);
+
     let post = `<div class="post">
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${image}" alt="${name}">                    
+                    ${profilePic}                
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${name}</div>
@@ -129,4 +132,13 @@ function createPostTemplate(postInfo) {
     </div>`
 
     postContainer.innerHTML += post;
+}
+
+//funzione che verifica se viene effettivamente passata un'immagine o no e sulla base di ciò genera un template contenente o l'immagine o le iniziali ricavate dal nome
+//image, name
+function hasImageOrNot(image, name){
+    const initials = name.split(' ').map((item) => item[0]).join('');
+    const userImg = image ? `<img class="profile-pic" src="${image}" alt="${name}">` : `<div class="profile-pic-default"><span>${initials}</span></div>`;
+
+    return userImg;
 }
